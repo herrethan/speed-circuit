@@ -1,13 +1,13 @@
 # Speed Circuit
 
-Ningg a NEEEEEEIIINNNGG a ning ning!
+Ningg a NEEEEEEIIINNNGG a ning a ning!
 
 ## Development
 
 0. Install required packages
     ``` bash
-    $ sudo easy_install pip
-    $ sudo pip install virtualenv
+    $ easy_install pip
+    $ pip install virtualenv
     ```
 
 0. Setup and run
@@ -17,6 +17,18 @@ Ningg a NEEEEEEIIINNNGG a ning ning!
     ```
 
 0. Starts at [localhost:5000](http://localhost:5000)
+
+0. Webpack static assets watcher
+    ``` bash
+    $ npm run watch
+    ```
+
+0. Setup database
+    ``` bash
+    $ python manage.py db init
+    $ python manage.py db migrate
+    $ python manage.py db upgrade
+    ```
 
 0. Stop
     - Ctrl+C
