@@ -1,4 +1,5 @@
-from flask_bcrypt import Bcrypt
+from flask.ext.bcrypt import Bcrypt
+from flask.ext.login import LoginManager, UserMixin
 from sqlalchemy.ext.hybrid import hybrid_property, hybrid_method
 
 from app import app, db
@@ -6,7 +7,16 @@ from app import app, db
 
 bcrypt = Bcrypt(app)
 
-class User(db.Model):
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view =  'login'
+
+@login_manager.user_loader
+def load_user(userid):
+    return User.query.filter(User.id==userid).first()
+
+
+class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)

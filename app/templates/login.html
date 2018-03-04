@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+
+{% macro render_field(field) %}
+  {{ field.label }}
+  {{ field(**kwargs)|safe }}
+  {% for error in field|attr('errors') %}
+    <div class="form-error-message">{{ error }}</div>
+  {% endfor %}
+{% endmacro %}
+
+
+<body>
+  <h1>login</h1>
+  <form method="POST">
+    {{ render_field(form.username, placeholder="Username") }}
+    {{ render_field(form.password, placeholder="Password") }}
+    {{ form.hidden_tag() }}
+    <input type="submit" value="Submit">
+  </form>
+
+  {{ fail_message }}
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block main %}
+  <h2>oops! heh.</h2>
+  {% for error in errors %}
+  <p>{{ error.code }}: {{ error.name }}</p>
+  <p>{{ error.description }}</p>
+  {% endfor %}
+{% endblock%}

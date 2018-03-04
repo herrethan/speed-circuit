@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title></title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block main %}
+<main>
   <h1>this is index</h1>
   <div id="content"></div>
-  <script src="{{ url_for('static', filename='dist/bundle.js') }}"></script>
-</body>
-</html>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="{{ url_for('static', filename='dist/bundle.js') }}"></script>
+{% endblock %}

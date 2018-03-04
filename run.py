@@ -1,6 +1,5 @@
 from livereload import Server, shell
 from app.app import app
-from app import views, models
 
 
 if __name__ == '__main__':
