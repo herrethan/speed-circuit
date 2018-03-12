@@ -1,7 +1,8 @@
-// const glob = require('glob');
 const path = require('path');
 // const webpack = require('webpack');
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 
 module.exports = [];
 
@@ -9,9 +10,8 @@ module.exports = [];
 module.exports.push({
   entry: './app/static/scss/base.scss',
   output: {
-    // This is necessary for webpack to compile
-    // But we never use style-bundle.js
-    filename: 'style-bundle.js',
+    // This is necessary for webpack to compile but we never use style-bundle.js
+    filename: './app/static/dist/style-bundle.js',
   },
   module: {
     rules: [{
@@ -45,70 +45,30 @@ module.exports.push({
 
 // bundle jsx -> js
 module.exports.push({
-  entry: "./app/static/js/index.jsx",
+  entry:  __dirname + '/app/static/js/index.jsx',
   output: {
-    filename: "./app/static/dist/bundle.js"
+    path: __dirname + '/app/static/dist',
+    filename: 'bundle.js',
   },
   module: {
-    loaders: [{
-      test: /\.jsx$/,
-      loader: 'babel-loader',
-      query: {
-        presets: ['es2015']
+    rules: [
+      {
+        // do babel-loader transpiling
+        test: /\.jsx$/,
+        loader: 'babel-loader',
+        options: {
+          presets: ['env', 'react']
+        }
+      },
+      {
+        // then allow uglification
+        test: /\.js$/,
+        loader: 'babel-loader',
+        enforce: 'pre'
       }
-    }]
+    ]
   },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  }
 });
-
-// const config = {
-//   entry:  __dirname + '/app/static/js/index.jsx',
-//   output: {
-//       path: __dirname + '/app/static/dist',
-//       filename: 'bundle.js',
-//   },
-//   // resolve: {
-//   //     extensions: ['.js', '.jsx', '.css']
-//   // },
-//   module: {
-//     rules: [
-//       {
-//         test: /\.jsx?/,
-//         exclude: /node_modules/,
-//         use: 'babel-loader'
-//       },
-//       {
-//         test: /\.scss$/,
-//         use: ExtractTextPlugin.extract({
-//           fallback: 'style-loader',
-//           use: [
-//             {
-//               loader: 'css-loader'
-//             },
-//             {
-//               loader: 'sass-loader',
-//               options: {
-//                 importer: function(url, prev) {
-//                   if(url.indexOf('@material') === 0) {
-//                     var filePath = url.split('@material')[1];
-//                     var nodeModulePath = `./node_modules/@material/${filePath}`;
-//                     return { file: path.resolve(nodeModulePath) };
-//                   };
-//                   // if(url.indexOf('material-components-web/') === 0) {
-//                   //   var nodeModulePath = `./node_modules/material-components-web/material-components-web`;
-//                   //   return { file: path.resolve(nodeModulePath) };
-//                   // }
-//                   return { file: url };
-//                 }
-//               }
-//             }
-//           ]
-//         })
-//       }
-//     ]
-//   },
-//   plugins: [
-//     new ExtractTextPlugin('style.css')
-//   ]
-// };
-
-// module.exports = config;

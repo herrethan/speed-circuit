@@ -20,10 +20,16 @@ def index():
 def status():
     status = {
         'debug': app.config['DEBUG'],
+        'environment': app.config['ENVIRONMENT'],
         'database': app.config['SQLALCHEMY_DATABASE_URI'],
         'logged_in_user': pydash.get(current_user, 'username'),
     }
     return jsonify(status)
+
+
+@app.route('/_chat')
+def chat_test():
+    return render_template('_chat.html')
 
 
 @app.route('/about')
