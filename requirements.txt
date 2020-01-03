@@ -23,7 +23,7 @@ pycparser==2.18
 pydash==4.3.3
 python-dateutil==2.6.1
 python-editor==1.0.3
-python-engineio==2.0.3
+python-engineio==3.8.2.post1
 python-socketio==1.9.0
 singledispatch==3.4.0.3
 six==1.11.0
