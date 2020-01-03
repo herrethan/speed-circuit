@@ -2,6 +2,8 @@
 
 Ningg a NEEEEEEIIINNNGG a ning a ning!
 
+Note to self: Use monoton font https://fonts.google.com/specimen/Monoton
+
 ## Development
 
 0. Install required packages
