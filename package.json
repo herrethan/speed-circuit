@@ -44,7 +44,7 @@
     "extract-loader": "^1.0.2",
     "file-loader": "^1.1.11",
     "material-components-web": "^0.31.0",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.13.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "sass-loader": "^6.0.7",
